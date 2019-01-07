@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity"
+    android:background="@drawable/fondo3">
+
+    <TextView
+        android:id="@+id/txtViewNameUser"
+        android:layout_width="111dp"
+        android:layout_height="45dp"
+        android:layout_alignBottom="@+id/txtUserName"
+        android:layout_alignParentStart="true"
+        android:layout_marginStart="19dp"
+        android:layout_marginBottom="-2dp"
+        android:text="Usuario"
+        android:textSize="18dp"
+        android:textColor="@android:color/white"
+        tools:layout_editor_absoluteX="23dp"
+        tools:layout_editor_absoluteY="250dp" />
+
+    <EditText
+        android:id="@+id/txtUserName"
+        android:textColor="@android:color/white"
+        android:layout_width="216dp"
+        android:layout_height="46dp"
+        android:layout_alignEnd="@+id/txtPassword"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="223dp"
+        android:layout_marginEnd="0dp"
+        android:ems="10"
+        android:inputType="text|textPersonName"
+        tools:layout_editor_absoluteX="150dp"
+        tools:layout_editor_absoluteY="250dp" />
+
+    <EditText
+        android:id="@+id/txtPassword"
+        android:textColor="@android:color/white"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginEnd="19dp"
+        android:layout_marginBottom="163dp"
+        android:ems="10"
+        android:inputType="textPassword"
+        tools:layout_editor_absoluteX="151dp"
+        tools:layout_editor_absoluteY="319dp" />
+
+    <TextView
+        android:id="@+id/txtViewPasswd"
+        android:layout_width="104dp"
+        android:layout_height="43dp"
+        android:layout_alignTop="@+id/txtPassword"
+        android:layout_marginTop="-3dp"
+        android:layout_marginEnd="26dp"
+        android:layout_toStartOf="@+id/txtUserName"
+        android:text="Contraseña"
+        android:textSize="18dp"
+        android:textColor="@android:color/white"
+        tools:layout_editor_absoluteX="26dp"
+        tools:layout_editor_absoluteY="319dp" />
+
+    <Button
+        android:id="@+id/btnLogin"
+        android:layout_width="168dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="-30dp"
+        android:layout_marginBottom="95dp"
+        android:layout_toEndOf="@+id/txtViewNameUser"
+        android:text="Ingresar"
+        android:textColor="@android:color/white"
+        tools:layout_editor_absoluteX="121dp"
+        tools:layout_editor_absoluteY="383dp" />
+
+    <TextView
+        android:id="@+id/lblInfo"
+        android:textColor="@android:color/white"
+        android:layout_width="229dp"
+        android:layout_height="25dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="68dp"
+        android:layout_marginBottom="41dp"
+        tools:layout_editor_absoluteX="75dp"
+        tools:layout_editor_absoluteY="457dp" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="123dp"
+        android:layout_marginTop="29dp"
+        app:srcCompat="@mipmap/login1" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="215dp"
+        android:layout_height="36dp"
+        android:layout_alignEnd="@+id/txtViewPasswd"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="172dp"
+        android:layout_marginEnd="-157dp"
+        android:text="Inicio de Sesion"
+        android:textAlignment="center"
+        android:textSize="28dp"
+        android:textColor="@android:color/white"/>
+</RelativeLayout>

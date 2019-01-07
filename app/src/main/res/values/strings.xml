@@ -1,3 +1,36 @@
 <resources>
-    <string name="app_name">HorasEstudio</string>
+    <string name="app_name">Jams Food</string>
+    <string name="app_inicioSesion">Inicio de Sesión</string>
+    <string name="usr">Usuario</string>
+    <string name="pass">Contraseña</string>
+    <string name="iniciar">INGRESAR</string>
+    <string name="registrar">CREAR CUENTA</string>
+    <string name="olvido">Olvido su contraseña</string>
+    <string name="nombre">Nombre</string>
+    <string name="apellido">Apellido</string>
+    <string name="Correo">Correo</string>
+    <string name="title_activity_login">Sign in</string>
+    <!-- Strings related to login -->
+    <string name="prompt_email">Email</string>
+    <string name="prompt_password">Password (optional)</string>
+    <string name="action_sign_in">Sign in or register</string>
+    <string name="action_sign_in_short">Sign in</string>
+    <string name="error_invalid_email">This email address is invalid</string>
+    <string name="error_invalid_password">This password is too short</string>
+    <string name="error_incorrect_password">This password is incorrect</string>
+    <string name="error_field_required">This field is required</string>
+    <string name="permission_rationale">"Contacts permissions are needed for providing email
+        completions."
+    </string>
+    <string name="title_activity_registrar">activity_registrar</string>
+    <string name="action_settings">Settings</string>
+    <string name="section_format">Hello World from section: %1$d</string>
+    <string name="tab_text_1">USUARIO</string>
+    <string name="tab_text_2">RESTAURANTE</string>
+    <string name="title_activity__registrar">Activity_Registrar</string>
+    <string name="tab_text_3">Tab 3</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
 </resources>
