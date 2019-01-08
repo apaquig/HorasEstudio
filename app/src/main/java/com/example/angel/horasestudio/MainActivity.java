@@ -23,6 +23,7 @@ public class MainActivity extends AppCompatActivity {
 
     //prueba de subida
         //este es una nueva pruebA
+        //Proyecto Ing Software
     }
    public void registrar(){
         Intent login =new Intent(this, Registrar.class);
