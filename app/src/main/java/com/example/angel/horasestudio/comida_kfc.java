@@ -11,8 +11,10 @@ import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.angel.horasestudio.grid_menufood_kfc;
+
 public class comida_kfc extends AppCompatActivity {
-GridView gridView;
+    GridView gridView;
     String[] fruitNames = {"Combo 1","Hmaburguesa","Pollo 5 presas "};
     int[] menuFood_kfc_Images = {R.drawable.kfc_cbx1,R.drawable.kfc_hamburguesa,R.drawable.kfc_pollo};
 
@@ -27,8 +29,11 @@ GridView gridView;
 
         gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                //Intent intent = new Intent(getApplicationContext());
+            public void onItemClick(AdapterView<?> parent, View view, int i, long id) {
+                Intent intent = new Intent(getApplicationContext(),grid_menufood_kfc.class);
+                intent.putExtra("name",fruitNames[i]);
+                intent.putExtra("image",menuFood_kfc_Images[i]);
+                startActivity(intent);
             }
         });
     }
@@ -52,7 +57,7 @@ GridView gridView;
         @Override
         public View getView(int i, View convertView, ViewGroup parent) {
 
-            View view1 = getLayoutInflater() .inflate(R.layout.menufood_kfc,null);
+            View view1 = getLayoutInflater().inflate(R.layout.menufood_kfc,null);
             TextView name =view1.findViewById(R.id.fruits);
             ImageView image = view1.findViewById(R.id.images);
 
