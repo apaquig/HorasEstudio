@@ -40,7 +40,7 @@ public class Registrar_User extends Fragment implements Response.Listener<JSONOb
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
+        // Inflate the layout for this fragment hola
        View  vistaUser=inflater.inflate(R.layout.fragment_registrar__user, container, false);
 
        txtNombre=(EditText)vistaUser.findViewById(R.id.txtNombreUser);
