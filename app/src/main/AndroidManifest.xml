@@ -6,6 +6,7 @@
     <uses-permission android:name="android.permission.GET_ACCOUNTS" />
     <uses-permission android:name="android.permission.READ_PROFILE" />
     <uses-permission android:name="android.permission.READ_CONTACTS" />
+    <uses-permission android:name="android.permission.INTERNETº" />
 
     <application
         android:allowBackup="true"
@@ -27,8 +28,10 @@
         <activity
             android:name=".Registrar"
             android:parentActivityName=".MainActivity"
-
-            android:theme="@style/AppTheme.NoActionBar"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".Ventana_Principal" />
+        <activity android:name=".Restaurantes" />
+        <activity android:name=".grid_menufood_kfc"></activity>
     </application>
 
 </manifest>
