@@ -41,15 +41,15 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <EditText
-                android:id="@+id/txtApellidoUser"
+                android:id="@+id/txtCedulaUser"
                 android:layout_width="270dp"
                 android:layout_height="42dp"
                 android:layout_marginStart="24dp"
                 android:layout_marginTop="8dp"
                 android:drawableLeft="@drawable/ic_action_user"
                 android:ems="10"
-                android:hint="Apellido"
-                android:inputType="textPersonName"
+                android:hint="Cedula"
+                android:inputType="number"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/txtNombreUser" />
 
@@ -64,7 +64,17 @@
                 android:hint="Telefono"
                 android:inputType="phone"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/txtApellidoUser" />
+                app:layout_constraintTop_toBottomOf="@+id/txtCedulaUser" />
+
+            <EditText
+                android:id="@+id/txtDireccionUser"
+                android:layout_width="270dp"
+                android:layout_height="42dp"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="8dp"
+                android:ems="10"
+                android:hint="Direccion"
+                android:inputType="textPersonName" />
 
             <EditText
                 android:id="@+id/txtCorreoUser"
@@ -91,6 +101,8 @@
                 android:inputType="textPassword"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/txtCorreoUser" />
+
+
 
             <Button
                 android:id="@+id/btnRegistrarUser"
