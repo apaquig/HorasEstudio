@@ -9,10 +9,6 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.Toast;
 
-
-/**
- * A simple {@link Fragment} subclass.
- */
 public class Registrar_Restaurante extends Fragment{
 
     Button registarRestaurant;
