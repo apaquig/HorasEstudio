@@ -35,6 +35,8 @@ public class Registrar_Restaurante extends Fragment{
         });
 
 
+
+
         return vista;
 
     }
