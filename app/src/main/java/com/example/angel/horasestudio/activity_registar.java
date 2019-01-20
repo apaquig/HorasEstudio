@@ -19,4 +19,7 @@ public class activity_registar extends AppCompatActivity {
             actionBar.setTitle("Registrar");
         }
     }
+
+    public static class Entidad {
+    }
 }
