@@ -16,7 +16,7 @@ import com.example.angel.horasestudio.grid_menufood_kfc;
 public class comida_kfc extends AppCompatActivity {
     GridView gridView;
     String[] fruitNames = {"Combo 1","Hmaburguesa","Pollo 5 presas "};
-    int[] menuFood_kfc_Images = {R.drawable.kfc_cbx1,R.drawable.kfc_hamburguesa,R.drawable.kfc_pollo};
+    int[] menuFood_kfc_Images = {R.drawable.kfc,R.drawable.kfc_hamburguesa,R.drawable.kfc_pollo};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
