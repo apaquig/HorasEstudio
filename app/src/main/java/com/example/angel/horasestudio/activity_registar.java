@@ -9,7 +9,7 @@ public class activity_registar extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_registar);
+        //setContentView(R.layout.activity_registar);
         returnActionBar();
     }
     private void returnActionBar(){

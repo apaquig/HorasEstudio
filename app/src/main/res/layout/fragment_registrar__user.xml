@@ -103,7 +103,6 @@
                 app:layout_constraintTop_toBottomOf="@+id/txtCorreoUser" />
 
 
-
             <Button
                 android:id="@+id/btnRegistrarUser"
                 android:layout_width="270dp"
