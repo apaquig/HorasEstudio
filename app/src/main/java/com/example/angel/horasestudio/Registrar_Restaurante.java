@@ -22,11 +22,14 @@ import java.io.IOException;
  * A simple {@link Fragment} subclass.
  */
 public class Registrar_Restaurante extends Fragment{
-    private static final String UPLOAD_URL = "https://2cab987a.ngrok.io/login/insert_image.php";
+
     Button registarRestaurant;
     View vista;
     private ImageView imagen;
     private int galeria = 1;
+    public Registrar_Restaurante() {
+        // Required empty public constructor
+    }
 
 
     @Override
@@ -63,17 +66,11 @@ public class Registrar_Restaurante extends Fragment{
 
             try {
                 Bitmap bitmap = MediaStore.Images.Media.getBitmap(getContext().getContentResolver(), uri);
-                String rurta =uri.getPath();
-                Toast.makeText(getContext(),rurta,Toast.LENGTH_SHORT).show();
                 imagen.setImageBitmap(bitmap);
             }catch(IOException e){
                 e.printStackTrace();
             }
         }
     }
-    public Registrar_Restaurante() {
-        // Required empty public constructor
-    }
-
 
 }

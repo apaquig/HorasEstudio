@@ -14,15 +14,15 @@
         android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:layout_marginStart="0dp"
-        android:layout_marginTop="2dp">
+        android:layout_marginTop="0dp">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical" >
+            android:orientation="vertical">
 
             <EditText
-                android:id="@+id/editText7"
+                android:id="@+id/txtNombrePro"
                 android:layout_width="270dp"
                 android:layout_height="42dp"
                 android:layout_marginStart="24dp"
@@ -33,34 +33,35 @@
                 android:inputType="textPersonName"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
+
             <EditText
-                android:id="@+id/txtApellidoProp"
+                android:id="@+id/txtCedulaPro"
                 android:layout_width="270dp"
                 android:layout_height="42dp"
                 android:layout_marginStart="24dp"
                 android:layout_marginTop="8dp"
                 android:drawableLeft="@drawable/ic_action_user"
                 android:ems="10"
-                android:hint="Apellido"
+                android:hint="Cedula"
                 android:inputType="textPersonName"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/editText7" />
+                app:layout_constraintTop_toBottomOf="@+id/txtNombrePro" />
 
             <EditText
                 android:id="@+id/txtRestaurante"
                 android:layout_width="270dp"
                 android:layout_height="42dp"
                 android:layout_marginStart="24dp"
-                android:drawableLeft="@drawable/ic_action_home"
                 android:layout_marginTop="8dp"
+                android:drawableLeft="@drawable/ic_action_home"
                 android:ems="10"
                 android:hint="Nombre restaurante"
                 android:inputType="textPersonName"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/txtApellidoProp" />
+                app:layout_constraintTop_toBottomOf="@+id/txtCedulaPro" />
 
             <EditText
-                android:id="@+id/txtTelefonoProp"
+                android:id="@+id/txtTelefonoPro"
                 android:layout_width="270dp"
                 android:layout_height="42dp"
                 android:layout_marginStart="24dp"
@@ -73,7 +74,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/txtRestaurante" />
 
             <EditText
-                android:id="@+id/txtCorroeProp"
+                android:id="@+id/txtCorreoPro"
                 android:layout_width="270dp"
                 android:layout_height="42dp"
                 android:layout_marginStart="24dp"
@@ -83,7 +84,7 @@
                 android:hint="Correo"
                 android:inputType="textEmailAddress"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/txtTelefonoProp" />
+                app:layout_constraintTop_toBottomOf="@+id/txtTelefonoPro" />
 
             <EditText
                 android:id="@+id/txtPassPro"
@@ -91,12 +92,22 @@
                 android:layout_height="42dp"
                 android:layout_marginStart="24dp"
                 android:layout_marginTop="8dp"
-                android:ems="10"
                 android:drawableLeft="@drawable/ic_action_pass"
+                android:ems="10"
                 android:hint="Contraseña"
                 android:inputType="textPassword"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/txtCorroeProp" />
+                app:layout_constraintTop_toBottomOf="@+id/txtCorreoPro" />
+
+            <EditText
+                android:id="@+id/txtDireccionPro"
+                android:layout_width="270dp"
+                android:layout_height="42dp"
+                android:layout_marginStart="24dp"
+                android:layout_marginTop="8dp"
+                android:ems="10"
+                android:hint="Direccion"
+                android:inputType="textPersonName" />
 
             <ImageView
                 android:id="@+id/imarest"
