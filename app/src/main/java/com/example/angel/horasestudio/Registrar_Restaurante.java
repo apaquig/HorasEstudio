@@ -127,6 +127,7 @@ public class Registrar_Restaurante extends Fragment implements Response.Listener
 
     }
 
+    //Limpiar Cajas de texto
     private void limpiarCaja(){
         txtNombrePro.setText("");
         txtCedulaPro.setText("");
