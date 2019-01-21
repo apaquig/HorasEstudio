@@ -40,7 +40,7 @@ public class SesionFragment extends Fragment implements Response.Listener<JSONOb
         txtUser = (EditText)vista.findViewById(R.id.txtLoginUserL);
         txtPassword=(EditText)vista.findViewById(R.id.txtLoginPassL);
         btnInisiarSesion=(Button)vista.findViewById(R.id.btnLoginL);
-      //  btnRegistrarU=(Button)vista.findViewById(R.id.btnRegister);
+        btnRegistrarU=(Button)vista.findViewById(R.id.btnCrearCuentaL);
 
         rqq =Volley.newRequestQueue(getContext());
 
@@ -50,18 +50,18 @@ public class SesionFragment extends Fragment implements Response.Listener<JSONOb
                 iniciarSesion();
             }
         });
-      /*  btnRegistrarU.setOnClickListener(new View.OnClickListener() {
+        btnRegistrarU.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                registarFragment();
+                registrar();
             }
-        });*/
+        });
 
         return vista;
     }
 
     private void iniciarSesion() {
-        String url="http://jamsfood.atwebpages.com/login.php?cuentaUsuario="+txtUser.getText().toString()+
+        String url="https://2cab987a.ngrok.io/login/login.php?cuentaUsuario="+txtUser.getText().toString()+
                 "&contrasenia="+txtPassword.getText().toString();
         jrqq =new JsonObjectRequest(Request.Method.GET,url,null,this,this);
         rqq.add(jrqq);
@@ -92,6 +92,11 @@ public class SesionFragment extends Fragment implements Response.Listener<JSONOb
       /*  Intent intention =new Intent(getContext(),Main2Activity.class );
         intention.putExtra(Main2Activity.nombres, user.getNombre());
         startActivity(intention);*/
+
+    }
+       public void registrar(){
+        Intent login =new Intent(getContext(), Registrar.class);
+        startActivity(login);
 
     }
 }

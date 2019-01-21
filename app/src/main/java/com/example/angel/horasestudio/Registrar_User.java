@@ -63,23 +63,24 @@ public class Registrar_User extends Fragment implements Response.Listener<JSONOb
         return vistaUser;
     }
     private void registrarUsuario() {
-    /*String url="http://192.168.1.106/loguin/registrar.php?nombre="+nombre.getText().toString()+"&usr="+txtUser.getText().toString()+
-            "&pass="+txtPassword.getText().toString();
+    String url="https://2cab987a.ngrok.io/login/registrar.php?cuentaUsuario=" + txtCorreo.getText().toString() +
+            "&contrasenia=" + txtPassword.getText().toString()+"&cedula=" + txtCedula.getText().toString()+
+            "&nombre=" + txtNombre.getText().toString()+"&telefono=" + txtTelefono.getText().toString()+
+            "&direccion=" + txtDireccion.getText().toString();
    // Toast.makeText(getContext(),"Name "+nombre.getText().toString()+" Usr "+txtUser.getText().toString()+" Paas "+txtPassword.getText().toString(),Toast.LENGTH_LONG).show();
-*/
 
-        String url="http://jamsfood.atwebpages.com/registrarUsuario.php?cuentaUsuario=" + txtCorreo.getText().toString() +
+
+       /* String url="http://jamsfood.atwebpages.com/registrarUsuario.php?cuentaUsuario=" + txtCorreo.getText().toString() +
                 "&contrasenia=" + txtPassword.getText().toString()+"&cedula=" + txtCedula.getText().toString()+
                 "&nombre=" + txtNombre.getText().toString()+"&telefono=" + txtTelefono.getText().toString()+
-                "&direccion=" + txtDireccion.getText().toString();
+                "&direccion=" + txtDireccion.getText().toString();*/
 
         jrq = new JsonObjectRequest(Request.Method.GET, url, null, this, this);
         rq.add(jrq);
     }
         @Override
     public void onErrorResponse(VolleyError error) {
-        Toast.makeText(getContext(),"Registrado",Toast.LENGTH_LONG).show();
-        limoiarcaja();
+        Toast.makeText(getContext(),"Error al registrar",Toast.LENGTH_LONG).show();
     }
 
     @Override
