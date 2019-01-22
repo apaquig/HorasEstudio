@@ -1,13 +1,20 @@
 package com.example.angel.horasestudio;
 
 
+import android.Manifest;
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
+import android.support.v4.content.ContextCompat;
+import android.util.Base64;
+import android.util.Base64DataException;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,43 +23,53 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.JsonRequest;
+import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 
 import org.json.JSONObject;
 
+import java.io.ByteArrayOutputStream;
+import java.io.File;
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 
 
 /**
  * A simple {@link Fragment} subclass.
  */
-public class Registrar_Restaurante extends Fragment implements Response.Listener<JSONObject>,Response.ErrorListener{
+public class Registrar_Restaurante extends Fragment{
 
+    private static  final String ARG_PARM1="param1";
+    private static  final String ARG_PARM2="param2";
+    File fileImagen;
+    Bitmap bitmap;
+    ProgressDialog progressDialog;
+
+    private static final int IMAGE_REQUEST_CODE = 3;
+    private static final int STORAGE_PERMISSION_CODE = 123;
     private RequestQueue rq;
     private JsonRequest jrq;
 
     private EditText txtNombrePro,txtCedulaPro,txtRestaurante, txtTelefonoPro, txtCorreoPro,txtPassPro,txtDireccionPro;
-    private Button btnRegistarUser;
 
-    Button btnRegistarProp;
+    private Button btnRegistarProp;
     View vistaRest;
     private ImageView imagen;
     private int galeria = 1;
-    public Registrar_Restaurante() {
-        // Required empty public constructor
-    }
+    Uri uri;
 
-
+    StringRequest stringRequest;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-
         vistaRest=inflater.inflate(R.layout.fragment_registrar__restaurante, container, false);
 
         txtNombrePro=(EditText)vistaRest.findViewById(R.id.txtNombrePro);
@@ -64,15 +81,14 @@ public class Registrar_Restaurante extends Fragment implements Response.Listener
         txtDireccionPro=(EditText)vistaRest.findViewById(R.id.txtDireccionPro);
         rq=Volley.newRequestQueue(getContext());
 
-        btnRegistarUser=(Button)vistaRest.findViewById(R.id.btnRegistrarUser);
-        btnRegistarUser.setOnClickListener(new View.OnClickListener() {
+        btnRegistarProp=(Button)vistaRest.findViewById(R.id.btnRegistarProp);
+        btnRegistarProp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 //String url="http://jamsfood.atwebpages.com/registrarUsuario.php";
-                registrarRestaurante();
+                cargarWebServices();
             }
         });
-
         imagen = (ImageView) vistaRest.findViewById(R.id.imarest);
         imagen.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -87,44 +103,81 @@ public class Registrar_Restaurante extends Fragment implements Response.Listener
         return vistaRest;
 
     }
-
-    private void registrarRestaurante() {
-        String url="https://2cab987a.ngrok.io/login/registrar.php?cuentaUsuario=" + txtCorreoPro.getText().toString() +
-                "&contrasenia=" + txtPassPro.getText().toString()+"&cedula=" + txtCedulaPro.getText().toString()+
-                "&nombre=" + txtNombrePro.getText().toString()+"&telefono=" + txtTelefonoPro.getText().toString()+
-                "&direccion=" + txtDireccionPro.getText().toString()+"&nombreRestaurante=" + txtRestaurante.getText().toString();
-        // Toast.makeText(getContext(),"Name "+nombre.getText().toString()+" Usr "+txtUser.getText().toString()+" Paas "+txtPassword.getText().toString(),Toast.LENGTH_LONG).show();
-
-
-        jrq = new JsonObjectRequest(Request.Method.GET, url, null, this, this);
-        rq.add(jrq);
-    }
-
     public void onActivityResult (int requestCode, int resultCode, Intent data){
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == galeria && resultCode == Activity.RESULT_OK && data != null && data.getData() != null){
-            Uri uri = data.getData();
+            uri = data.getData();
+            imagen.setImageURI(uri);
 
             try {
-                Bitmap bitmap = MediaStore.Images.Media.getBitmap(getContext().getContentResolver(), uri);
+                bitmap = MediaStore.Images.Media.getBitmap(getContext().getContentResolver(), uri);
                 imagen.setImageBitmap(bitmap);
             }catch(IOException e){
                 e.printStackTrace();
             }
         }
     }
+    private void cargarWebServices(){
+         progressDialog=new ProgressDialog(getContext());
+        progressDialog.setMessage("Registrando...");
+        progressDialog.show();
 
-    @Override
-    public void onErrorResponse(VolleyError error) {
-        Toast.makeText(getContext(),"Error al registrar",Toast.LENGTH_LONG).show();
+        String url="https://d4ee9633.ngrok.io/login/registrarRest.php?";
+        stringRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                       progressDialog.hide();
+                if (response.trim().equalsIgnoreCase("registra")){
+
+                    limpiarCaja();
+                    Toast.makeText(getContext(),"Se registro correctamente",Toast.LENGTH_LONG).show();
+                }else{
+                    Toast.makeText(getContext(),"Error al registrar",Toast.LENGTH_LONG).show();
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(getContext(),"NO se registro "+error.getStackTrace(),Toast.LENGTH_LONG).show();
+                      progressDialog.hide();
+            }
+        }){
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                String nombreRestaurante=txtRestaurante.getText().toString();
+                String Usuario_IdUsuario=txtCorreoPro.getText().toString();
+                String logo=combertirImgString(bitmap);
+
+                Map<String,String>parametros=new HashMap<>();
+                parametros.put("nombreRestaurante",nombreRestaurante);
+                parametros.put("Usuario_IdUsuario",Usuario_IdUsuario);
+                parametros.put("logo",logo);
+
+                return parametros;
+            }
+        };
+        rq.add(stringRequest);
     }
 
-    @Override
-    public void onResponse(JSONObject response) {
-        //User user=new User();
-        Toast.makeText(getContext(),"Registro correcto",Toast.LENGTH_LONG).show();
-        limpiarCaja();
+    private String combertirImgString(Bitmap bitmap) {
+        ByteArrayOutputStream array= new ByteArrayOutputStream();
+        bitmap.compress(Bitmap.CompressFormat.JPEG,100,array);
+        byte[] imagenByte=array.toByteArray();
+        String imagenString= Base64.encodeToString(imagenByte,Base64.DEFAULT);
+        return imagenString;
+    }
 
+    private void requestStoragePermission() {
+        if (ContextCompat.checkSelfPermission(getContext(), Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED)
+            return;
+
+        if (ActivityCompat.shouldShowRequestPermissionRationale((Activity) getContext(), Manifest.permission.READ_EXTERNAL_STORAGE)) {
+            //If the user has denied the permission previously your code will come to this block
+            //Here you can explain why you need this permission
+            //Explain here why you need this permission
+        }
+        //And finally ask for the permission
+        ActivityCompat.requestPermissions((Activity) getContext(), new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, STORAGE_PERMISSION_CODE);
     }
 
     private void limpiarCaja(){
@@ -132,9 +185,11 @@ public class Registrar_Restaurante extends Fragment implements Response.Listener
         txtCedulaPro.setText("");
         txtRestaurante.setText("");
         txtTelefonoPro.setText("");
-        txtCedulaPro.setText("");
+        txtCorreoPro.setText("");
         txtPassPro.setText("");
         txtDireccionPro.setText("");
 
+
     }
+
 }

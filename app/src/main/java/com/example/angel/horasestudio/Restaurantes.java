@@ -37,7 +37,6 @@ public class Restaurantes extends AppCompatActivity {
 
         listRest.setAdapter(new Adaptador(this,datosRest, datosImg));
 
-        mybntimag = (ImageButton) findViewById(R.id.btnimage);
 
     }
 

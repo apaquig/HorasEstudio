@@ -72,12 +72,4 @@
         app:layout_constraintTop_toTopOf="@+id/guideline10"
         app:srcCompat="@drawable/restaurant_ups" />
 
-    <ImageButton
-        android:id="@+id/btnimage"
-        android:layout_width="39dp"
-        android:layout_height="41dp"
-        app:srcCompat="@drawable/kfc"
-        tools:layout_editor_absoluteX="37dp"
-        tools:layout_editor_absoluteY="104dp" />
-
 </android.support.constraint.ConstraintLayout>

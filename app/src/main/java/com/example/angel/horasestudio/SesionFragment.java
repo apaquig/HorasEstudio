@@ -61,23 +61,22 @@ public class SesionFragment extends Fragment implements Response.Listener<JSONOb
     }
 
     private void iniciarSesion() {
-        String url="https://2cab987a.ngrok.io/login/login.php?cuentaUsuario="+txtUser.getText().toString()+
+        String url="https://d4ee9633.ngrok.io/login/login.php?cuentaUsuario="+txtUser.getText().toString()+
                 "&contrasenia="+txtPassword.getText().toString();
         jrqq =new JsonObjectRequest(Request.Method.GET,url,null,this,this);
         rqq.add(jrqq);
-        Toast.makeText(getContext(),"User"+txtUser.getText().toString()+" Pass"+txtPassword.getText().toString(),Toast.LENGTH_SHORT).show();
+      //  Toast.makeText(getContext(),"User"+txtUser.getText().toString()+" Pass"+txtPassword.getText().toString(),Toast.LENGTH_SHORT).show();
     }
 
     @Override
     public void onErrorResponse(VolleyError error) {
-        Toast.makeText(getContext(),"Usuario no existe"+error.toString(),Toast.LENGTH_LONG).show();
+        Toast.makeText(getContext(),"Usuario no registrado",Toast.LENGTH_LONG).show();
     }
 
     @Override
     public void onResponse(JSONObject response) {
         User user=new User();
-        Toast.makeText(getContext(),"Se ha encontrado el usuario"+txtUser.getText().toString(),Toast.LENGTH_LONG).show();
-
+        Toast.makeText(getContext(),"Bienvenido "+txtUser.getText().toString(),Toast.LENGTH_SHORT).show();
         JSONArray jsonArray=response.optJSONArray("datos");
         JSONObject jsonObject=null;
 
@@ -89,14 +88,19 @@ public class SesionFragment extends Fragment implements Response.Listener<JSONOb
         } catch (JSONException e) {
             e.printStackTrace();
         }
-      /*  Intent intention =new Intent(getContext(),Main2Activity.class );
-        intention.putExtra(Main2Activity.nombres, user.getNombre());
-        startActivity(intention);*/
+        Intent intention =new Intent(getContext(),Restaurantes.class );
+        //intention.putExtra(Main2Activity.nombres, user.getNombre());
+        startActivity(intention);
 
     }
        public void registrar(){
         Intent login =new Intent(getContext(), Registrar.class);
         startActivity(login);
 
+    }
+    private void limpiarCaja(){
+
+        txtPassword.setText("");
+        txtUser.setText("");
     }
 }
