@@ -61,7 +61,7 @@ public class SesionFragment extends Fragment implements Response.Listener<JSONOb
     }
 
     private void iniciarSesion() {
-        String url="https://d4ee9633.ngrok.io/login/login.php?cuentaUsuario="+txtUser.getText().toString()+
+        String url=" https://98a2a71c.ngrok.io/login/login.php?cuentaUsuario="+txtUser.getText().toString()+
                 "&contrasenia="+txtPassword.getText().toString();
         jrqq =new JsonObjectRequest(Request.Method.GET,url,null,this,this);
         rqq.add(jrqq);

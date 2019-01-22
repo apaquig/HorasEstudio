@@ -107,6 +107,7 @@
                 android:layout_marginTop="8dp"
                 android:ems="10"
                 android:hint="Direccion"
+                android:drawableLeft="@drawable/ic_action_address"
                 android:inputType="textPersonName" />
 
             <ImageView

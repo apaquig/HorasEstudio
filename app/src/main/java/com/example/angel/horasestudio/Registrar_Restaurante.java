@@ -45,7 +45,7 @@ import java.util.Map;
 /**
  * A simple {@link Fragment} subclass.
  */
-public class Registrar_Restaurante extends Fragment{
+public class Registrar_Restaurante extends Fragment implements Response.Listener<JSONObject>,Response.ErrorListener{
 
     private static  final String ARG_PARM1="param1";
     private static  final String ARG_PARM2="param2";
@@ -86,6 +86,7 @@ public class Registrar_Restaurante extends Fragment{
             @Override
             public void onClick(View v) {
                 //String url="http://jamsfood.atwebpages.com/registrarUsuario.php";
+                registrarUsuario();
                 cargarWebServices();
             }
         });
@@ -122,7 +123,7 @@ public class Registrar_Restaurante extends Fragment{
         progressDialog.setMessage("Registrando...");
         progressDialog.show();
 
-        String url="https://d4ee9633.ngrok.io/login/registrarRest.php?";
+        String url=" https://98a2a71c.ngrok.io/login/registrarRest.php?";
         stringRequest = new StringRequest(Request.Method.POST, url, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
@@ -179,7 +180,26 @@ public class Registrar_Restaurante extends Fragment{
         //And finally ask for the permission
         ActivityCompat.requestPermissions((Activity) getContext(), new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, STORAGE_PERMISSION_CODE);
     }
+    private void registrarUsuario() {
+        String url=" https://98a2a71c.ngrok.io/login/registrar.php?cuentaUsuario=" + txtCorreoPro.getText().toString() +
+                "&contrasenia=" + txtPassPro.getText().toString()+"&cedula=" + txtCedulaPro.getText().toString()+
+                "&nombre=" + txtNombrePro.getText().toString()+"&telefono=" + txtTelefonoPro.getText().toString()+
+                "&direccion=" + txtDireccionPro.getText().toString();
 
+        jrq = new JsonObjectRequest(Request.Method.GET, url, null, this, this);
+        rq.add(jrq);
+    }
+    @Override
+    public void onErrorResponse(VolleyError error) {
+        Toast.makeText(getContext(),"Error al registrar",Toast.LENGTH_LONG).show();
+    }
+
+    @Override
+    public void onResponse(JSONObject response) {
+        //User user=new User();
+        //Toast.makeText(getContext(),"Registro correcto",Toast.LENGTH_LONG).show();
+        limpiarCaja();
+    }
     private void limpiarCaja(){
         txtNombrePro.setText("");
         txtCedulaPro.setText("");

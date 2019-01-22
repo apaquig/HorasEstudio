@@ -63,7 +63,7 @@ public class Registrar_User extends Fragment implements Response.Listener<JSONOb
         return vistaUser;
     }
     private void registrarUsuario() {
-    String url="https://98746192.ngrok.io/login/registrar.php?cuentaUsuario=" + txtCorreo.getText().toString() +
+    String url=" https://98a2a71c.ngrok.io/login/registrar.php?cuentaUsuario=" + txtCorreo.getText().toString() +
             "&contrasenia=" + txtPassword.getText().toString()+"&cedula=" + txtCedula.getText().toString()+
             "&nombre=" + txtNombre.getText().toString()+"&telefono=" + txtTelefono.getText().toString()+
             "&direccion=" + txtDireccion.getText().toString();
