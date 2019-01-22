@@ -25,29 +25,38 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 
-public class SesionFragment extends Fragment implements Response.Listener<JSONObject>,Response.ErrorListener{
+public class SesionFragment extends Fragment implements Response.Listener<JSONObject>, Response.ErrorListener {
     RequestQueue rqq;
     JsonRequest jrqq;
 
-     EditText txtUser,txtPassword;
-    Button btnInisiarSesion,btnRegistrarU;
+    EditText txtUser, txtPassword;
+    Button btnInisiarSesion, btnRegistrarU, btnIniciarRest;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
 
-        View vista=inflater.inflate(R.layout.fragment_sesion, container, false);
-        txtUser = (EditText)vista.findViewById(R.id.txtLoginUserL);
-        txtPassword=(EditText)vista.findViewById(R.id.txtLoginPassL);
-        btnInisiarSesion=(Button)vista.findViewById(R.id.btnLoginL);
-        btnRegistrarU=(Button)vista.findViewById(R.id.btnCrearCuentaL);
+        View vista = inflater.inflate(R.layout.fragment_sesion, container, false);
+        txtUser = (EditText) vista.findViewById(R.id.txtLoginUserL);
+        txtPassword = (EditText) vista.findViewById(R.id.txtLoginPassL);
+        btnInisiarSesion = (Button) vista.findViewById(R.id.btnLoginL);
+        btnRegistrarU = (Button) vista.findViewById(R.id.btnCrearCuentaL);
+        btnIniciarRest = (Button) vista.findViewById(R.id.btnLoginRes);
 
-        rqq =Volley.newRequestQueue(getContext());
+        rqq = Volley.newRequestQueue(getContext());
+
+        btnIniciarRest.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                iniciarSesion();
+            }
+        });
 
         btnInisiarSesion.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                iniciarSesion();
+                //iniciarSesion();
             }
         });
         btnRegistrarU.setOnClickListener(new View.OnClickListener() {
@@ -61,44 +70,49 @@ public class SesionFragment extends Fragment implements Response.Listener<JSONOb
     }
 
     private void iniciarSesion() {
-        String url=" https://98a2a71c.ngrok.io/login/login.php?cuentaUsuario="+txtUser.getText().toString()+
-                "&contrasenia="+txtPassword.getText().toString();
-        jrqq =new JsonObjectRequest(Request.Method.GET,url,null,this,this);
+        String url = " https://98a2a71c.ngrok.io/login/login.php?cuentaUsuario=" + txtUser.getText().toString() +
+                "&contrasenia=" + txtPassword.getText().toString();
+        jrqq = new JsonObjectRequest(Request.Method.GET, url, null, this, this);
         rqq.add(jrqq);
-      //  Toast.makeText(getContext(),"User"+txtUser.getText().toString()+" Pass"+txtPassword.getText().toString(),Toast.LENGTH_SHORT).show();
+        //  Toast.makeText(getContext(),"User"+txtUser.getText().toString()+" Pass"+txtPassword.getText().toString(),Toast.LENGTH_SHORT).show();
     }
 
     @Override
     public void onErrorResponse(VolleyError error) {
-        Toast.makeText(getContext(),"Usuario no registrado",Toast.LENGTH_LONG).show();
+        Toast.makeText(getContext(), "Usuario no registrado", Toast.LENGTH_LONG).show();
     }
 
     @Override
     public void onResponse(JSONObject response) {
-        User user=new User();
-        Toast.makeText(getContext(),"Bienvenido "+txtUser.getText().toString(),Toast.LENGTH_SHORT).show();
-        JSONArray jsonArray=response.optJSONArray("datos");
-        JSONObject jsonObject=null;
+        User user = new User();
+        Toast.makeText(getContext(), "Bienvenido " + txtUser.getText().toString(), Toast.LENGTH_SHORT).show();
+        JSONArray jsonArray = response.optJSONArray("datos");
+        JSONObject jsonObject = null;
 
         try {
-            jsonObject= jsonArray.getJSONObject(0);
+            jsonObject = jsonArray.getJSONObject(0);
             user.setUser(jsonObject.optString("usr"));
             user.setPass(jsonObject.optString("pass"));
             user.setNombre(jsonObject.optString("nombre"));
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        Intent intention =new Intent(getContext(),Restaurantes.class );
+        /*Intent intention = new Intent(getContext(), Restaurantes.class);
         //intention.putExtra(Main2Activity.nombres, user.getNombre());
-        startActivity(intention);
+        startActivity(intention);*/
+
+        Intent rest=new Intent(getContext(),RegistrarPlato.class);
+        startActivity(rest);
 
     }
-       public void registrar(){
-        Intent login =new Intent(getContext(), Registrar.class);
+
+    public void registrar() {
+        Intent login = new Intent(getContext(), Registrar.class);
         startActivity(login);
 
     }
-    private void limpiarCaja(){
+
+    private void limpiarCaja() {
 
         txtPassword.setText("");
         txtUser.setText("");
